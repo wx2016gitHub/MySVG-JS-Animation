@@ -1,0 +1,149 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>My SVG And Javascript Test</title>
+    <meta charset="UTF-8" />
+    <style>
+        body {  background-image: -webkit-radial-gradient(circle, lightsalmon,white );
+                background-image: radial-gradient(circle, lightsalmon,white );}
+        #flower { position:absolute; top:90px; left:90px;  border-radius:30px; opacity: 0.9; }
+    </style>
+</head>
+<body>
+  <div id="mySVG">
+       <svg width="240" height="240" viewBox="0 0 240 240" style="background:rgb(255,222,222) ">
+ 
+            <g stroke="gold" stroke-width="5" fill="red">
+               <path d="M20,70 a100,150  0 0 0 200, 0  c0,-70 -100,-70 -100,0 c0,-70 -100,-70 -100,0 z " />
+               <!--
+               <circle cx="70" cy="70" r="50" stroke="green" stroke-width="2"  fill="none" />
+               <circle cx="170" cy="70" r="50" stroke="green" stroke-width="2"  fill="none" />
+               <path d="M20,70 L220,70" stroke-width="2" stroke="green" fill="none" />
+
+           <circle cx="20" cy="70" r="15" stroke="gold" stroke-width="3" fill="yellowgreen" />
+
+               --> 
+           </g>
+
+
+      </svg>
+       
+      <div></div>
+      <div id="flower"><img src="simple.png" width="60px" heigh="60px"></div>
+  </div>
+
+  <script>
+/*
+        var myAudio = document.createElement("AUDIO");
+        if (myAudio.canPlayType("audio/mp3")) {
+            myAudio.src = "./source/music.mp3";
+        }
+        myAudio.controls = false;
+        myAudio.loop = true;
+        myAudio.autopaly = true;
+        document.body.appendChild(myAudio);
+        myAudio.play();
+*/
+        document.getElementsByTagName("div")[0].style.position = "absolute";
+        document.getElementsByTagName("div")[0].style.width = "240px";
+        document.getElementsByTagName("div")[0].style.height = "240px";
+        document.getElementsByTagName("div")[0].style.border = "thick solid green";
+       // document.getElementsByTagName("div")[0].style.background = "url('./source/marbleWhite.jpg') repeat";
+       // document.getElementsByTagName("div")[0].style.fontFamily = "Arial";
+       document.getElementsByTagName("div")[0].style.borderRadius = "10px";
+       document.getElementsByTagName("div")[0].style.borderWidth = "5px";
+
+        var temp = document.getElementsByTagName("div")[0].style.height;
+        if (Number(temp.slice(0, temp.length - 2)) >= window.innerHeight)
+             document.getElementsByTagName("div")[0].style.top = 0 + "px";
+        else
+             document.getElementsByTagName("div")[0].style.top = (window.innerHeight - Number(temp.slice(0, temp.length - 2)) )/ 2 + 5 + "px";
+        temp = document.getElementsByTagName("div")[0].style.width;
+        if ( Number(temp.slice(0, temp.length - 2)) >= window.innerWidth)
+            document.getElementsByTagName("div")[0].style.left = 0 + "px";
+        else
+            document.getElementsByTagName("div")[0].style.left = (window.innerWidth - Number(temp.slice(0, temp.length - 2))) / 2 + 5 + "px";
+
+
+        document.getElementsByTagName("div")[1].style.position = "absolute";
+        document.getElementsByTagName("div")[1].style.top = "58px";
+        document.getElementsByTagName("div")[1].style.left = "8px";
+        document.getElementsByTagName("div")[1].style.width = "20px";
+        document.getElementsByTagName("div")[1].style.height = "20px";
+        document.getElementsByTagName("div")[1].style.backgroundColor = "yellowgreen";
+        document.getElementsByTagName("div")[1].style.borderRadius = "50%";
+        document.getElementsByTagName("div")[1].style.border = "2px solid gold";
+
+        var direction=1;
+        var X=0;
+        var Y=0;
+        var CX = -100;
+        var left=0;
+  
+        var setRun = setInterval(ballRunning, 30 );
+        function ballRunning() {
+  
+            if ( direction==1 ){   // half ellipse
+                 X++;
+                 CX++; 
+ 
+                 Y= Math.sqrt(150*150*(1- CX* CX/10000)); 
+                 left = X + 8;
+                 Y += 58;
+                 document.getElementsByTagName("div")[1].style.top = Y+"px";
+                 document.getElementsByTagName("div")[1].style.left = left+"px";
+                 if ( X > 200 ){
+                      direction=2;
+                      X=50;
+                      Y=0;
+                      CX = 200;
+                      left=0;
+                 }
+            }
+ 
+            if ( direction==2 ){   //  two half circles
+                 CX--; 
+                 X--;
+                 if ( CX <= 0 ){
+                      direction=1;
+                      X=0;
+                      Y=0;
+                      CX = -100;
+                      left=0;
+                 }
+
+                 if ( CX == 100 )   
+                      X=50;
+
+                 Y= Math.sqrt(  50*50- X*X  );
+                 left = CX + 8;
+                 Y  = 58 - Y;  
+                 document.getElementsByTagName("div")[1].style.top = Y+"px";
+                 document.getElementsByTagName("div")[1].style.left = left+"px";
+            }
+
+         }
+  
+
+        window.addEventListener("resize", function () {
+            var H = document.getElementsByTagName("div")[0].style.height;
+            var W = document.getElementsByTagName("div")[0].style.width;
+
+            if ( Number(H.slice(0, H.length - 2)) >= window.innerHeight)
+                document.getElementsByTagName("div")[0].style.top = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.top = (window.innerHeight - Number(H.slice(0, H.length - 2))) / 2 + 5 + "px";
+
+            if ( Number(W.slice(0, W.length - 2)) >= window.innerWidth)
+                document.getElementsByTagName("div")[0].style.left = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.left = (window.innerWidth - Number(W.slice(0, W.length - 2))) / 2 + 5 + "px";
+        });
+
+        document.document.getElementsByTagName("div")[0].addEventListener("click", function () {
+             clearInterval(setRun);
+        });
+  </script>
+</body>
+</html>
+<!-- @copyright Wendy Xiao HTML test code JULY, 2016>

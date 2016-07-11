@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>My SVG And Javascript Test</title>
+    <meta charset="UTF-8" />
+    <style>
+        body {  
+                background-image: -webkit-radial-gradient(circle,  lightcyan, white  );
+                background-image: radial-gradient(circle,   lightcyan, white ); 
+                font-size:9px; 
+        }
+        #dflower { 
+                position:absolute; 
+                top:90px; 
+                left:90px;  
+                border-radius:30px; 
+                opacity: 0.7; 
+       }
+    </style>
+</head>
+<body>
+  <div id="mySVG">
+       <svg width="240" height="254" viewBox="0 0 240 254">
+            <g stroke="gold" stroke-width="5" fill="red">
+               <path d="M20,70 a100,150  0 0 0 200, 0  c0,-70 -100,-70 -100,0 c0,-70 -100,-70 -100,0 z " />
+           </g>
+           <defs>
+               <path id="mypath1" d="M0,242  c40,20 60,-20 100,0 c40,20 60,-20 100,0 c40,20 60,-20 100,0" />  
+           </defs>
+           <text x="1" y="242" style="fill:deepskyblue; stroke:none; font-size:9" >
+                 <textPath xlink:href="#mypath1"> @Copyright SVG and Javascript Test Code Wendy Xiao July, 2016</textPath>
+           </text>
+      </svg>
+      <div></div>
+      <div id="dflower"><img id="hflower" src="./source/simple.png"  ></div>
+  </div>
+  <script src="./source/curveMotion.js"></script>
+</body>
+</html>
+<!-- @copyright Wendy Xiao HTML test code JULY, 2016  <img src="./source/simple.png" width="60px" heigh="60px"> -->
